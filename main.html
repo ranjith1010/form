@@ -1,0 +1,46 @@
+<html>
+  <head><title>Hello</title></head>
+  <body>
+    <h2>Form</h2>
+    <input type="number" id="num" oninput="numberchange()" min=1>
+    <div id="div1"></div>
+  
+ <script>
+   function numberchange(){
+      var x=document.getElementById("num").value;
+      document.getElementById("div1").innerHTML="";
+      for(var i=1; i<=x; ++i){
+      var para = document.createElement("p");
+      para.innerHTML="CATEGORY "+i+" <div id='form"+i+"'><select id='category"+i+"' onchange='selectchange(this.value,"+i+")'><option>--Select--</option><option>Faculty</option><option>Student</option><option>Industry Personnel</option><option>Research Scholar</option><option>Others</option></select></div>";
+      document.getElementById("div1").appendChild(para);}
+      }
+    function selectchange(category,index){
+      if(category=="Faculty"){
+        var para = document.createElement("p");
+        para.innerHTML="<input id='name"+index+"' placeholder='Faculty Name'>";
+        document.getElementById("form"+index).appendChild(para);
+      }
+      else if(category=="Student"){
+        var para = document.createElement("p");
+        para.innerHTML="<input id='name"+index+"' placeholder='Student Name'>";
+        document.getElementById("form"+index).appendChild(para);
+      }
+      else if(category=="Industry Personnel"){
+        var para = document.createElement("p");
+        para.innerHTML="<input id='name"+index+"' placeholder='Industry Personnel Name'>";
+        document.getElementById("form"+index).appendChild(para);
+      }
+      else if(category=="Research Scholar"){
+        var para = document.createElement("p");
+        para.innerHTML="<input id='name"+index+"' placeholder='Research Scholar Name'>";
+        document.getElementById("form"+index).appendChild(para);
+      }
+      else{
+        var para = document.createElement("p");
+        para.innerHTML="<input id='name"+index+"' placeholder='Name'>";
+        document.getElementById("form"+index).appendChild(para);
+      }
+      }
+  </script>
+    </body>
+</html>
