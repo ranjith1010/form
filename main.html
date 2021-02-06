@@ -14,7 +14,10 @@
       para.innerHTML="CATEGORY "+i+" <div id='form"+i+"'><select id='category"+i+"' onchange='selectchange(this.value,"+i+")'><option>--Select--</option><option>Faculty</option><option>Student</option><option>Industry Personnel</option><option>Research Scholar</option><option>Others</option></select></div>";
       document.getElementById("div1").appendChild(para);}
       }
+   
     function selectchange(category,index){
+      if(document.getElementById("name"+index)!=null)
+        document.getElementById("name"+index).remove();
       if(category=="Faculty"){
         var para = document.createElement("p");
         para.innerHTML="<input id='name"+index+"' placeholder='Faculty Name'>";
