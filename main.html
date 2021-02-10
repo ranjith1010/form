@@ -12,38 +12,48 @@
       document.getElementById("div1").innerHTML="";
       for(var i=1; i<=x; ++i){
       var para = document.createElement("p");
-      para.innerHTML="CATEGORY "+i+" <div id='form"+i+"'><select id='category"+i+"' onchange='selectchange(this.value,"+i+")'><option>--Select--</option><option>Faculty</option><option>Student</option><option>Industry Personnel</option><option>Research Scholar</option><option>Others</option></select></div>";
+      para.innerHTML='<b> CATEGORY '+i+'</b> <div name="form'+i+'" id="form'+i+'"><select id="category'+i+'" onchange="selectchange(this.value,'+i+')"><option>--Select--</option><option>Faculty</option><option>Student</option><option>Industry Personnel</option><option>Research Scholar</option><option>Others</option></select></div>';
       document.getElementById("div1").appendChild(para);}
       }
-   
+    function createInputElement(label,placeholder,type,minlength,maxlength,id,params){
+      return label+'&nbsp;<input name="'+id+'" id="'+id+'" type="'+type+'" placeholder="'+placeholder+'" minlength="'+minlength+'" maxlength="'+maxlength+'" '+params+'>';
+    }
     function selectchange(category,index){
-      if(document.getElementById("name"+index)!=null)
-        document.getElementById("name"+index).remove();
+      if(document.getElementById("pform"+index)!=null)
+        document.getElementById("pform"+index).remove();
+      var author ='Author <select name="author'+index+'" id="author'+index+'"><option selected="selected" value="">Select</option>  <option value="Author1">Author1</option>  <option value="Author2">Author2</option>  <option value="Author3">Author3</option>  <option value="Author4">Author4</option>  <option value="Author5">Author5</option>  <option value="Author6">Author6</option>  <option value="Author7">Author7</option>  <option value="Author8">Author8</option>  <option value="Author9">Author9</option>  </select>';  
+      
+      var para = document.createElement("p");
+      para.id="pform"+index;
+      
       if(category=="Faculty"){
-        var para = document.createElement("p");
-        para.innerHTML="<input id='name"+index+"' placeholder='Faculty Name'>";
-        document.getElementById("form"+index).appendChild(para);
-      }
-      else if(category=="Student"){
-        var para = document.createElement("p");
-        para.innerHTML="<input id='name"+index+"' placeholder='Student Name'>";
-        document.getElementById("form"+index).appendChild(para);
-      }
-      else if(category=="Industry Personnel"){
-        var para = document.createElement("p");
-        para.innerHTML="<input id='name"+index+"' placeholder='Industry Personnel Name'>";
-        document.getElementById("form"+index).appendChild(para);
-      }
-      else if(category=="Research Scholar"){
-        var para = document.createElement("p");
-        para.innerHTML="<input id='name"+index+"' placeholder='Research Scholar Name'>";
-        document.getElementById("form"+index).appendChild(para);
+        var dept='Department <select id="dept'+index+'" name="dept'+index+'"><option value="" selected="selected">-Department-</option> <option value="AFD"> Apparel &amp; Fashion Design </option> <option value="AMC"> Applied Mathematics &amp; Computational Sciences </option> <option value="AS"> Applied Science </option> <option value="AUT"> Automobile Engineering </option> <option value="BIO"> Bio-Technology </option> <option value="BME"> Biomedical Engineering </option> <option value="CHE"> Chemistry </option> <option value="CIV"> Civil Engineering </option> <option value="CSE"> Computer Science &amp; Engineering </option> <option value="ECE"> Electronics &amp; Communication Engineering </option> <option value="EEE"> Electrical &amp; Electronics Engineering </option> <option value="ENG"> English </option> <option value="FAT"> Fashion Technology </option> <option value="HUM"> Humanities </option> <option value="ICE"> Instrumentation &amp; Control Systems Engineering </option> <option value="IT"> Information Technology </option> <option value="LIB"> Library </option> <option value="MAT"> Mathematics </option> <option value="MCA"> Computer Applications </option> <option value="MEC"> Mechanical Engineering </option> <option value="MTL"> Metallurgical Engineering </option> <option value="NMC"> Network Maintenance Cell </option> <option value="PHY"> Physics </option> <option value="PRO"> Production Engineering </option> <option value="RAE"> Robotics &amp; Automation Engineering </option> <option value="TXT"> Textile Technology </option> </select>';
+        var faculty='Faculty <select id="faculty'+index+'" name="faculty'+index+'" > <option selected="selected" value="">Select</option> <option value="Mr.Sajin Calvin S">Mr.Sajin Calvin S</option> <option value="Mr.Balasubramanian P">Mr.Balasubramanian P</option> <option value="Mr.Tester EEE">Mr.Tester EEE</option> </select>';
+        para.innerHTML=author+"<br/><br/>"+dept+"<br/><br/>"+faculty;  
       }
       else{
-        var para = document.createElement("p");
-        para.innerHTML="<input id='name"+index+"' placeholder='Name'>";
-        document.getElementById("form"+index).appendChild(para);
+        var name         = createInputElement('Name','Enter the Name','text','2','50','name'+index,'');
+        var designation  = createInputElement('Designation','Enter the Designation','text','2','50','designation'+index,'');
+        var district     = createInputElement('District','Eg. Coimbatore','text','2','50','district'+index,'');
+        var state        = createInputElement('State','Eg. Tamil Nadu','text','2','50','state'+index,'');
+        var country      = createInputElement('Country','Eg. India','text','2','50','country'+index,'');
+        var phone        = createInputElement('Phone','Eg. 9874563210','number','10','10','phone'+index,'');
+        var organization = 'Name and Address of Organization <br/>'+'<textarea id="organization'+index+'" name="organization'+index+'" cols="30" rows="4" placeholder="Enter the Name and Address of Organization"></textarea>';
+        
+        if(category=="Student"){
+          para.innerHTML=author+"<br/><br/>"+name+"<br/><br/>"+designation+"<br/><br/>"+organization+"<br/><br/>"+district+"<br/><br/>"+state+"<br/><br/>"+country+"<br/><br/>";
+        }
+        else if(category=="Industry Personnel"){
+          para.innerHTML=author+"<br/><br/>"+name+"<br/><br/>"+designation+"<br/><br/>"+organization+"<br/><br/>"+district+"<br/><br/>"+state+"<br/><br/>"+country+"<br/><br/>"+phone+"<br/><br/>";
+        }
+        else if(category=="Research Scholar"){
+          para.innerHTML=author+"<br/><br/>"+name+"<br/><br/>"+designation+"<br/><br/>"+organization+"<br/><br/>"+district+"<br/><br/>"+state+"<br/><br/>"+country+"<br/><br/>"+phone+"<br/><br/>";
+        }
+        else if(category=="Others"){
+          para.innerHTML=author+"<br/><br/>"+name+"<br/><br/>"+designation+"<br/><br/>"+organization+"<br/><br/>"+district+"<br/><br/>"+state+"<br/><br/>"+country+"<br/><br/>"+phone+"<br/><br/>";
+        }
       }
+      document.getElementById("form"+index).appendChild(para);
       }
   </script>
     </body>
